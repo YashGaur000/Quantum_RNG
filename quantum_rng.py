@@ -1,6 +1,6 @@
 import streamlit as st
 from qiskit import QuantumCircuit
-from qiskit_aer import AerSimulator
+from qiskit.providers.basic_provider import BasicSimulator
 import numpy as np
 
 def generate_quantum_random_number():
@@ -14,11 +14,11 @@ def generate_quantum_random_number():
         # Measure the qubit
         qc.measure(0, 0)
         
-        # Use the Aer simulator
-        simulator = AerSimulator()
+        # Use the basic simulator
+        backend = BasicSimulator()
         
         # Execute the circuit
-        job = simulator.run(qc, shots=1)
+        job = backend.run(qc, shots=1)
         result = job.result()
         
         # Get the measurement result
